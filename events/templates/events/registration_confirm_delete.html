@@ -1,0 +1,10 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    <h2>Cancel Registration</h2>
+    <p style="margin: 20px 0;">Are you sure you want to delete your registration for <strong>{{ registration.get_event_type_display }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Cancel Registration</button>
+        <a href="{% url 'dashboard' %}" class="btn" style="background:#ccc; color:black; margin-left:10px;">No, Go Back</a>
+    </form>
+{% endblock %}

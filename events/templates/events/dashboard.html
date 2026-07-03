@@ -1,0 +1,35 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2>Your Event Registrations</h2>
+        <a href="{% url 'create_registration' %}" class="btn btn-success">+ Register for Event</a>
+    </div>
+
+    {% if registrations %}
+    <table>
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>College</th>
+                <th>Event Selected</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registration in registrations %}
+            <tr>
+                <td>{{ registration.student_name }}</td>
+                <td>{{ registration.college_name }}</td>
+                <td>{{ registration.get_event_type_display }}</td>
+                <td>
+                    <a href="{% url 'update_registration' registration.pk %}" class="btn btn-primary" style="padding:5px 10px; font-size:14px;">Edit</a>
+                    <a href="{% url 'delete_registration' registration.pk %}" class="btn btn-danger" style="padding:5px 10px; font-size:14px;">Cancel</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p style="margin-top:30px; color:#777;">You haven't registered for any events yet.</p>
+    {% endif %}
+{% endblock %}

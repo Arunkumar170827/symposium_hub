@@ -1,0 +1,11 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    <form method="POST" style="margin-top:20px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" class="btn btn-success">Save Registration</button>
+        <a href="{% url 'dashboard' %}" style="margin-left: 15px; color: #777;">Cancel</a>
+    </form>
+{% endblock %}
